@@ -2,53 +2,44 @@ require 'spec_helper'
 
 describe "Static Pages" do
 
-  let(:base_title) { "Brett Hoyer App" }
+  let(:base_title) { "Justin Reiter App" }
+
+  subject {page}
 
   describe "Home Page" do
+  	before {visit root_path}
 
-  	it "should have the h1 'Home'" do
-  		visit '/static_pages/home'
-  		page.should have_selector('h1', :text => 'Home')
-  	end
-
-  	it "should have the title 'Home'" do
-  		visit '/static_pages/home'
-  		page.should have_selector('title',
-  						 :text => "Brett Hoyer App")
-  	end
-
-  	it "should not have a custom page title" do
-  		visit '/static_pages/home'
-  		page.should_not have_selector('title', :text => '| Home')
-  	end	
+  	it { should have_selector('h1', 
+  						text: 'Welcome to the Reiter Choch Zone') }
+  	it { should have_selector('title', text: full_title('')) }
+  	it { should_not have_selector 'title', text: '| Home' }
   end
 
-  describe "Help Page" do
+  describe "Help page" do
+    before { visit help_path }
 
-  	it "should have the h1 'Help'" do
-  		visit '/static_pages/help'
-  		page.should have_selector('h1', :text => "God, Help Me!")
-  	end
-
-  	it "should have the title 'Help'" do
-  		visit '/static_pages/help'
-  		page.should have_selector('title',
-  					 	:text => "#{base_title} | Help" )
-  	end
+    it { should have_selector('h1',    text: 'Help') }
+    it { should have_selector('title', text: full_title('Help')) }
   end
 
+  describe "About page" do
+    before { visit about_path }
+
+    it { should have_selector('h1',    text: 'About') }
+    it { should have_selector('title', text: full_title('About Us')) }
+  end
+
+  describe "Contact page" do
+    before { visit contact_path }
+
+    it { should have_selector('h1',    text: 'Contact') }
+    it { should have_selector('title', text: full_title('Contact')) }
+  end
 	
-  describe "Parents Page" do
+  describe "Skills Page" do
+  	before { visit skills_path}
 
-  	it "should have the h1 'Jew and Fatboy'" do
-  		visit '/static_pages/parents'
-  		page.should have_selector('h1', :text => "Jew and Fatboy")
-  	end
-
-  	it "should have the title 'Parents'" do
-  		visit '/static_pages/parents'
-  		page.should have_selector('title',
-  							:text => "#{base_title} | Parents")
-	end  
+  	it { should have_selector('h1', text: 'Acquired Skills') }
+  	it { should have_selector('title', text: full_title('Acquired Skills')) }
   end
 end

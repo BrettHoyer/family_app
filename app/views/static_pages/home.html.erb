@@ -1,6 +1,12 @@
-<h1>Home</h1>
-<p>
+<div class="center hero-unit">
+  <h1>Welcome to the Reiter Choch Zone</h1>
+  <h2>
   This is the home page for the first Rails app by
-  <a href-"http://www.linkedin.com/pub/brett-hoyer/49/427/990"> 
+  <a href="http://www.linkedin.com/pub/brett-hoyer/49/427/990"> 
   Brett Hoyer</a>
-</p>
+  </h2>
+
+   <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+</div>
+
+<%= link_to image_tag("reiter_sandwich.png", alt: "Reiter"), 'http://www.linkedin.com/pub/justin-reiter/35/787/402' %>
